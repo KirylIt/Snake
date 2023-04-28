@@ -8,6 +8,7 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // При нажатии на красный крестик, игра завершит свою работу
         setSize(320,345); // Установка размеров поля
         setLocation(400, 400); // Установка позиции начала игры
+        add(new GameField());
         setVisible(true); //Установка видимости экрана
     }
 
