@@ -21,12 +21,12 @@ public class GameField extends JPanel implements ActionListener {
     private int appleX; // координаты для яблока 1
     private int appleY;
 
-    /*private int appleX1; // координаты для яблока 2
+    private int appleX1; // координаты для яблока 2
     private int appleY1;
 
     private int appleX2; // координаты для яблока 3
     private int appleY2;
-     */
+
 
     private int dots; // количество звеньев змейки (очков в игре)
     private Timer timer; // считает количество кадров в секундку (скорость игры)
@@ -46,19 +46,17 @@ public class GameField extends JPanel implements ActionListener {
         dot = iid.getImage();
     }
 
+
     public void createApple() { // генерация случайного места яблока
         Random random = new Random();
         appleX = random.nextInt(20) * DOT_SIZE;  // 1 яблоко
         appleY = random.nextInt(20) * DOT_SIZE;
 
-        /*appleX1 = random.nextInt(20) * DOT_SIZE;  // 2 яблоко
+        appleX1 = random.nextInt(20) * DOT_SIZE;  // 2 яблоко
         appleY1 = random.nextInt(20) * DOT_SIZE;
 
         appleX2 = random.nextInt(20) * DOT_SIZE;  // 3 яблоко
         appleY2 = random.nextInt(20) * DOT_SIZE;
-        */
-
-
     }
 
     public void initGame() { // Метод инициализации игры в самом начале (Вызов при старте игры)
@@ -77,7 +75,7 @@ public class GameField extends JPanel implements ActionListener {
             dots++;
             createApple();
         }
-/*
+
         if (x[0] == appleX1 && y[0] == appleY1) { // 2 яблоко
             dots++;
             createApple();
@@ -87,8 +85,6 @@ public class GameField extends JPanel implements ActionListener {
             dots++;
             createApple();
         }
-
- */
     }
 
     @Override
@@ -116,10 +112,10 @@ public class GameField extends JPanel implements ActionListener {
             x[0] = 0;
         if (x[0] < 0) // проверка при достижении змейки левой стенки (переход в правую стенку)
             x[0] = SIZE;
-        if (y[0] > SIZE) // проверка при достижении змейки верхней стенки (переход в низ)
-            y[0] = 0;
-        if (y[0] < 0) // проверка при достижении змейки нижней стенки (переход в верх)
-            y[0] = SIZE;
+        if (y[0] > SIZE) // проверка при достижении змейки верхней стенки (конец игры)
+            inGame = false;
+        if (y[0] < 0) // проверка при достижении змейки нижней стенки (конец игры)
+            inGame = false;
     }
 
     @Override
